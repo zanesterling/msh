@@ -1,6 +1,6 @@
 {
 	"name": "msh",
-	"description": "A minimal D application.",
+	"description": "A modal shell, written in D",
 	"copyright": "Copyright © 2015, zane",
 	"authors": ["zane"],
 	"dependencies": {
