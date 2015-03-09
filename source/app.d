@@ -3,13 +3,12 @@ import std.string;
 
 void main() {
 	bool running = true;
-	char[] line;
+	string line;
 
 	while (running) {
 		// prompt, get line
 		write("> ");
-		readln(line);
-		line = chomp(line);
+		line = chomp(readln());
 		
 		// output
 		writeln(line);
