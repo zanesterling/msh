@@ -3,4 +3,6 @@ docs.json
 __dummy.html
 *.o
 *.obj
+
 msh
+dub.selections.json
