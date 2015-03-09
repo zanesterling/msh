@@ -8,14 +8,24 @@ void main() {
 
 	while (state.running) {
 		// prompt, get line
-		write("> ");
+		write("$ ");
 		line = chomp(readln());
 		
 		// output
 		writeln(line);
-
 		parse(state, line);
 	}
 }
 
-void parse(ref ShellState state, string line) {}
+void parse(ref ShellState state, string line) {
+	switch (line) {
+		case "ls":
+			writeln("lsing");
+			break;
+		case "exit":
+			state.running = false;
+			break;
+		default:
+			break;
+	}
+}
