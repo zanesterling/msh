@@ -1,16 +1,21 @@
 import std.stdio;
 import std.string;
+import state;
 
 void main() {
-	bool running = true;
+	ShellState state;
 	string line;
 
-	while (running) {
+	while (state.running) {
 		// prompt, get line
 		write("> ");
 		line = chomp(readln());
 		
 		// output
 		writeln(line);
+
+		parse(state, line);
 	}
 }
+
+void parse(ref ShellState state, string line) {}
