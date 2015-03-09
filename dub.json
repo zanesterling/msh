@@ -1,0 +1,8 @@
+{
+	"name": "msh",
+	"description": "A minimal D application.",
+	"copyright": "Copyright © 2015, zane",
+	"authors": ["zane"],
+	"dependencies": {
+	}
+}
