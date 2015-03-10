@@ -1,3 +1,4 @@
+import std.file;
 import std.stdio;
 import std.string;
 import state;
@@ -8,24 +9,32 @@ void main() {
 
 	while (state.running) {
 		// prompt, get line
-		write("$ ");
+		write("msh$ ");
 		line = chomp(readln());
 		
 		// output
-		writeln(line);
 		parse(state, line);
 	}
 }
 
 void parse(ref ShellState state, string line) {
 	switch (line) {
+		case "pwd":
+			writeln(getcwd());
+			break;
 		case "ls":
-			writeln("lsing");
+			ls();
 			break;
 		case "exit":
 			state.running = false;
 			break;
 		default:
 			break;
+	}
+}
+
+void ls() {
+	foreach (string dirname; dirEntries(".", SpanMode.shallow)) {
+		writeln(dirname);
 	}
 }
