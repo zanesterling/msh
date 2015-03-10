@@ -34,6 +34,7 @@ void parse(ref ShellState state, string line) {
 			state.running = false;
 			break;
 		default:
+			writeln("msh: ", tokens[0], ": command not found");
 			break;
 	}
 }
