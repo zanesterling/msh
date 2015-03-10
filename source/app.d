@@ -51,6 +51,11 @@ void ls() {
 }
 
 void cd(string[] tokens) {
-	if (tokens.length < 2) writeln("cd: must provide a target dir");
-	else chdir(tokens[1]);
+	if (tokens.length < 2) {
+		writeln("cd: must provide a target dir");
+		return;
+	}
+
+	if (exists(tokens[1])) chdir(tokens[1]);
+	else writeln("cd: directory ", tokens[1], " does not exist");
 }
