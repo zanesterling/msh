@@ -35,7 +35,7 @@ void parse(ref ShellState state, string line) {
 
 void ls() {
 	foreach (string dirname; dirEntries(".", SpanMode.shallow)) {
-		string trimmed = dirname[2..$];
-		writeln(trimmed);
+		string trimmed = dirname[2 .. $];
+		writeln(" ", trimmed);
 	}
 }
