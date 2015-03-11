@@ -2,28 +2,31 @@ import std.file;
 import std.stdio;
 import std.string;
 import deimos.ncurses.ncurses;
+
 import state;
+import window;
 
 void main() {
 	ShellState state;
 	char[] line;
-
-	initscr(); // init curses
-	refresh();
+	auto window = new Window();
 
 	while (state.running) {
 		line.clear();
 
 		// prompt, get line
-		mvprintw(0, 0, "msh$ ");
+		window.pushLine("msh$ ".dup);
+		window.refresh();
 		do {
 			line ~= getch();
 		} while (line[$ - 1] != '\n');
+		window.popLine();
 		
 		// output
 		//parse(state, line);
-		mvprintw(1, 0, &(line[0]));
-		refresh();
+
+		window.pushLine("msh$ ".dup ~ line);
+		window.refresh();
 	}
 	endwin();
 }
