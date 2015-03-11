@@ -1,3 +1,4 @@
 enum ShellMode {
+	STANDARD,
 	INSERT,
 }

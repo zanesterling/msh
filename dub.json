@@ -4,5 +4,6 @@
 	"copyright": "Copyright © 2015, zane",
 	"authors": ["zane"],
 	"dependencies": {
+		"ncurses": "~master"
 	}
 }

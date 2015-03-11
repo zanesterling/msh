@@ -1,24 +1,35 @@
 import std.file;
 import std.stdio;
 import std.string;
+import deimos.ncurses.ncurses;
 import state;
 
 void main() {
 	ShellState state;
-	string line;
+	char[] line;
+
+	initscr(); // init curses
+	refresh();
 
 	while (state.running) {
+		line.clear();
+
 		// prompt, get line
-		write("msh$ ");
-		line = chomp(readln());
+		mvprintw(0, 0, "msh$ ");
+		do {
+			line ~= getch();
+		} while (line[$ - 1] != '\n');
 		
 		// output
-		parse(state, line);
+		//parse(state, line);
+		mvprintw(1, 0, &(line[0]));
+		refresh();
 	}
+	endwin();
 }
 
-void parse(ref ShellState state, string line) {
-	string[] tokens = tokenize(line);
+void parse(ref ShellState state, char[] line) {
+	char[][] tokens = tokenize(line);
 
 	switch (tokens[0]) {
 		case "pwd":
@@ -39,8 +50,8 @@ void parse(ref ShellState state, string line) {
 	}
 }
 
-string[] tokenize(string line) {
-	string[] tokens = line.split(" ");
+char[][] tokenize(char[] line) {
+	char[][] tokens = line.split(" ");
 	return tokens;
 }
 
@@ -51,7 +62,7 @@ void ls() {
 	}
 }
 
-void cd(string[] tokens) {
+void cd(char[][] tokens) {
 	if (tokens.length < 2) {
 		writeln("cd: must provide a target dir");
 		return;
