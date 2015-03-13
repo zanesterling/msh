@@ -73,7 +73,10 @@ class Window {
 			c = getch();
 			switch (c) {
 				case 127: // delete
-					popChar();
+					if (line.length > 0) {
+						popChar();
+						line.popBack();
+					}
 					refresh();
 					break;
 				default:
