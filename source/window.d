@@ -1,4 +1,4 @@
-import std.algorithm;
+import std.array;
 import std.stdio;
 import std.file;
 
@@ -24,11 +24,11 @@ class Window {
 		line ~= '\0';
 		lines ~= line;
 		if (lines.length > rows)
-			lines.remove(0);
+			lines.popFront();
 	}
 
 	void popLine() {
-		lines = lines.remove(lines.length - 1);
+		lines.popBack();
 	}
 
 	void pushChar(char c) {
