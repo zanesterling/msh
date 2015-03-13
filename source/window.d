@@ -39,15 +39,12 @@ class Window {
 		}
 		lines[$ - 1] ~= c;
 		lines[$ - 1] ~= '\0';
-
-		logFile.writeln("pushing char ", cast(int) c);
 	}
 
 	void popChar() {
 		if (lines[$ - 1].length > 0) {
 			lines[$ - 1].length--;
 			lines[$ - 1][$ - 1] = '\0';
-			logFile.writeln("popping char ", lines[$-1]);
 		}
 	}
 
