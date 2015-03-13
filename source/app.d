@@ -15,18 +15,11 @@ void main() {
 		line.clear();
 
 		// prompt, get line
-		window.pushLine("msh$ ".dup);
 		window.refresh();
-		do {
-			line ~= getch();
-		} while (line[$ - 1] != '\n');
-		window.popLine();
+		window.getLine("msh$ ".dup);
 		
 		// output
 		//parse(state, line);
-
-		window.pushLine("msh$ ".dup ~ line);
-		window.refresh();
 	}
 	endwin();
 }
