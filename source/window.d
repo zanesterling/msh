@@ -25,6 +25,12 @@ class Window {
 		lines ~= line;
 		if (lines.length > rows)
 			lines.popFront();
+
+		logFile.writeln(line);
+	}
+
+	void pushLine(string line) {
+		pushLine(line.dup);
 	}
 
 	void popLine() {
@@ -65,9 +71,7 @@ class Window {
 		refresh();
 
 		char[] line;
-		int c;
-		do {
-			c = getch();
+		for (int c = getch(); c != '\n' && c != -1; c = getch()) {
 			switch (c) {
 				case 127: // delete
 					if (line.length > 0) {
@@ -82,7 +86,7 @@ class Window {
 					refresh(); // TODO make this more efficient
 					break;
 			}
-		} while (c != '\n' && c != -1); // not newline or EOF
+		} // not newline or EOF
 
 		return line;
 	}

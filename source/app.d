@@ -6,20 +6,20 @@ import deimos.ncurses.ncurses;
 import state;
 import window;
 
+Window wind;
+
 void main() {
 	ShellState state;
 	char[] line;
-	auto window = new Window();
+	wind = new Window();
 
 	while (state.running) {
-		line.clear();
-
 		// prompt, get line
-		window.refresh();
-		window.getLine("msh$ ".dup);
+		wind.refresh();
+		line = wind.getLine("msh$ ".dup);
 		
 		// output
-		//parse(state, line);
+		parse(state, line);
 	}
 	endwin();
 }
@@ -29,7 +29,7 @@ void parse(ref ShellState state, char[] line) {
 
 	switch (tokens[0]) {
 		case "pwd":
-			writeln(getcwd());
+			wind.pushLine(getcwd());
 			break;
 		case "ls":
 			ls();
@@ -41,7 +41,7 @@ void parse(ref ShellState state, char[] line) {
 			state.running = false;
 			break;
 		default:
-			writeln("msh: ", tokens[0], ": command not found");
+			wind.pushLine("msh: " ~ tokens[0] ~ ": command not found");
 			break;
 	}
 }
@@ -54,16 +54,16 @@ char[][] tokenize(char[] line) {
 void ls() {
 	foreach (string dirname; dirEntries(".", SpanMode.shallow)) {
 		string trimmed = dirname[2 .. $];
-		writeln(" ", trimmed);
+		wind.pushLine(" " ~ trimmed);
 	}
 }
 
 void cd(char[][] tokens) {
 	if (tokens.length < 2) {
-		writeln("cd: must provide a target dir");
+		wind.pushLine("cd: must provide a target dir");
 		return;
 	}
 
 	if (exists(tokens[1])) chdir(tokens[1]);
-	else writeln("cd: directory ", tokens[1], " does not exist");
+	else wind.pushLine("cd: directory " ~ tokens[1] ~ " does not exist");
 }
