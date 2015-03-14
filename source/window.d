@@ -65,7 +65,7 @@ class Window {
 	}
 
 	// prompt for and record/return a line up to newline/EOF
-	char[] getLine(char[] prompt) {
+	char[] getLine(string prompt) {
 		// display the prompt
 		pushLine(prompt);
 		refresh();

@@ -16,7 +16,7 @@ void main() {
 	while (state.running) {
 		// prompt, get line
 		wind.refresh();
-		line = wind.getLine("msh$ ".dup);
+		line = wind.getLine("msh$ ");
 		
 		// output
 		parse(state, line);
