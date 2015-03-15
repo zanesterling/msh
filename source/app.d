@@ -47,7 +47,7 @@ void parse(ref ShellState state, string line) {
 }
 
 string[] tokenize(string line) {
-	string[] tokens = line.split(" ");
+	string[] tokens = line.split();
 	return tokens;
 }
 
