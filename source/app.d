@@ -1,7 +1,8 @@
+import deimos.ncurses.ncurses;
+
 import std.file;
 import std.stdio;
 import std.string;
-import deimos.ncurses.ncurses;
 
 import state;
 import window;

@@ -1,8 +1,8 @@
+import deimos.ncurses.ncurses;
+
 import std.array;
 import std.stdio;
 import std.file;
-
-import deimos.ncurses.ncurses;
 
 class Window {
 	int cols, rows;
