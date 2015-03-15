@@ -10,7 +10,7 @@ Window wind;
 
 void main() {
 	ShellState state;
-	char[] line;
+	string line;
 	wind = new Window();
 
 	while (state.running) {
@@ -24,8 +24,8 @@ void main() {
 	endwin();
 }
 
-void parse(ref ShellState state, char[] line) {
-	char[][] tokens = tokenize(line);
+void parse(ref ShellState state, string line) {
+	string[] tokens = tokenize(line);
 
 	switch (tokens[0]) {
 		case "pwd":
@@ -46,8 +46,8 @@ void parse(ref ShellState state, char[] line) {
 	}
 }
 
-char[][] tokenize(char[] line) {
-	char[][] tokens = line.split(" ");
+string[] tokenize(string line) {
+	string[] tokens = line.split(" ");
 	return tokens;
 }
 
@@ -58,7 +58,7 @@ void ls() {
 	}
 }
 
-void cd(char[][] tokens) {
+void cd(string[] tokens) {
 	if (tokens.length < 2) {
 		wind.pushLine("cd: must provide a target dir");
 		return;

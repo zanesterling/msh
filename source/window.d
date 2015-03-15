@@ -65,7 +65,7 @@ class Window {
 	}
 
 	// prompt for and record/return a line up to newline/EOF
-	char[] getLine(string prompt) {
+	string getLine(string prompt) {
 		// display the prompt
 		pushLine(prompt);
 		refresh();
@@ -88,6 +88,6 @@ class Window {
 			}
 		} // not newline or EOF
 
-		return line;
+		return line.idup;
 	}
 };
